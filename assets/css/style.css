@@ -153,12 +153,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
 .hero__lede { color: var(--muted); font-size: clamp(1.02rem, 1.5vw, 1.18rem); margin: 1.3rem 0 2rem; max-width: 34ch; }
 .hero__lede strong { color: var(--text); font-weight: 600; }
 .hero__cta { display: flex; flex-wrap: wrap; gap: .9rem; margin-bottom: 2rem; }
-.hero__links { list-style: none; display: flex; flex-wrap: wrap; gap: 1.3rem; font-size: .9rem; }
-.hero__links a { color: var(--muted); font-weight: 500; position: relative; transition: color .2s; }
-.hero__links a::after { content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 1.5px; background: var(--accent-2); transition: width .25s; }
-.hero__links a:hover { color: var(--text); }
-.hero__links a:hover::after { width: 100%; }
-
 .hero__portrait { position: relative; justify-self: center; width: min(340px, 80vw); aspect-ratio: 1; }
 .hero__portrait img {
   width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
@@ -186,6 +180,15 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
 .stat__num { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem);
   background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .stat__label { font-size: .82rem; color: var(--muted); letter-spacing: .02em; }
+
+/* ---------- Scholar metrics ---------- */
+.scholar-bar { border-bottom: 1px solid var(--line); background: var(--bg-alt); }
+.scholar-bar__inner { max-width: var(--max); margin: 0 auto; padding: 1.25rem var(--pad); display: grid; grid-template-columns: minmax(210px, 1fr) repeat(3, auto) auto; align-items: center; gap: clamp(1rem, 3vw, 2.2rem); }
+.scholar-bar__label { display: flex; flex-direction: column; gap: .18rem; font-family: var(--font-display); font-weight: 650; }
+.scholar-bar__label small { color: var(--muted); font-family: var(--font-mono); font-size: .7rem; font-weight: 400; }
+.scholar-metric { display: flex; flex-direction: column; min-width: 72px; }
+.scholar-metric strong { color: var(--accent-2); font-family: var(--font-display); font-size: 1.35rem; line-height: 1; }
+.scholar-metric span { color: var(--muted); font-size: .75rem; margin-top: .25rem; }
 
 /* ---------- Sections ---------- */
 .section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
@@ -245,7 +248,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
 .footer { border-top: 1px solid var(--line); background: var(--bg-alt); }
 .footer__inner { max-width: var(--max); margin: 0 auto; padding: 1.8rem var(--pad); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
 .footer p { color: var(--muted); font-size: .88rem; }
-.footer__links { display: flex; gap: 1.2rem; font-size: .88rem; }
+.footer__links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .65rem 1.15rem; font-size: .86rem; }
 .footer__links a { color: var(--muted); transition: color .2s; }
 .footer__links a:hover { color: var(--text); }
 
@@ -359,7 +362,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
 @media (max-width: 860px) {
   .hero__inner { grid-template-columns: 1fr; text-align: center; }
   .hero__lede { max-width: none; }
-  .hero__cta, .hero__links { justify-content: center; }
+  .hero__cta { justify-content: center; }
   .hero__portrait { grid-row: 1; margin-bottom: 1rem; width: min(240px, 60vw); }
   .about { grid-template-columns: 1fr; }
   .cards { grid-template-columns: 1fr; }
@@ -368,6 +371,9 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; letter-spacing:
   .affil-grid { grid-template-columns: 1fr 1fr; }
   .talk { grid-template-columns: 1fr; gap: .4rem; }
   .talk__date { padding-top: 0; }
+  .scholar-bar__inner { grid-template-columns: repeat(3, 1fr); }
+  .scholar-bar__label { grid-column: 1 / -1; }
+  .scholar-bar__inner > .badge { grid-column: 1 / -1; justify-self: start; }
 }
 @media (prefers-reduced-motion: reduce) {
   .portrait__ring, .hero__scroll span::after { animation: none; }

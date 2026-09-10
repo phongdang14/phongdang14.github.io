@@ -1,6 +1,29 @@
 /* ---------- Year ---------- */
 document.querySelectorAll('.year').forEach(el => el.textContent = new Date().getFullYear());
 
+/* ---------- Google Scholar metrics ---------- */
+const scholarMetrics = document.querySelector('[data-scholar-stat]');
+if (scholarMetrics) {
+  fetch(`assets/data/scholar-stats.json?v=${new Date().toISOString().slice(0, 10)}`)
+    .then(response => {
+      if (!response.ok) throw new Error('Metrics unavailable');
+      return response.json();
+    })
+    .then(stats => {
+      document.querySelectorAll('[data-scholar-stat]').forEach(el => {
+        const value = stats[el.dataset.scholarStat];
+        if (Number.isFinite(value)) el.textContent = value.toLocaleString('en-US');
+      });
+      const updated = document.querySelector('[data-scholar-updated]');
+      if (updated && stats.updated_at) {
+        updated.textContent = new Date(`${stats.updated_at}T12:00:00`).toLocaleDateString('en-US', {
+          day: 'numeric', month: 'short', year: 'numeric'
+        });
+      }
+    })
+    .catch(() => {});
+}
+
 /* ---------- Theme toggle ---------- */
 const root = document.documentElement;
 const stored = localStorage.getItem('theme');
